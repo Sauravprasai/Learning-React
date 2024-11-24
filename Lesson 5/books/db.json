@@ -1,12 +1,8 @@
 {
   "books": [
     {
-      "title": "Don't Just Stand There",
-      "id": "5aa2"
-    },
-    {
-      "id": "a711",
-      "title": "Rich Dad Poor Dad"
+      "title": "Rich Dad Poor Dad",
+      "id": "a711"
     },
     {
       "id": "0b73",
@@ -15,6 +11,10 @@
     {
       "title": "Camera",
       "id": "4075"
+    },
+    {
+      "title": "Don't Just Stand There",
+      "id": "cdf8"
     }
   ]
 }
