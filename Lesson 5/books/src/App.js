@@ -6,10 +6,9 @@ import useBooksContext from "./hooks/use-books-context.js";
 function App() {
   const {getBook} = useBooksContext();
 
-  // eslint-disable-next-xdvx,
   useEffect(() =>{
     getBook();
-  }, [])
+  }, [getBook])
 
   return (
     <div className="app">
