@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import { FaChevronCircleDown, FaChevronCircleLeft } from "react-icons/fa";
 
-function Accordion({items}){
+function AccordionPage({items}){
     const [expandedIndex, setExpandedIndex] = useState(null);
 
     const handleClick = (nextIndex) => {
@@ -34,4 +34,4 @@ function Accordion({items}){
     )
 }
 
-export default Accordion;
+export default AccordionPage;
