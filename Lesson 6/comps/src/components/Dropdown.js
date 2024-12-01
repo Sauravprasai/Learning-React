@@ -1,7 +1,28 @@
-import {useState} from 'react';
+import {useState, useEffect, useRef} from 'react';
+import { FaAngleDown } from "react-icons/fa";
+import Panel from './Panel';
 
-function Dropdown({options, selected, onSelect}){
+function Dropdown({options, value, onChange}){
     const [isOpen, setIsOpen] = useState(false);
+    const divEl = useRef();
+
+    useEffect(()=>{
+        const handler = (event) => {
+            if(!divEl.current){
+                return;
+            }
+            
+            if(!divEl.current.contains(event.target)){
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handler, true);
+
+        return () => {
+            document.removeEventListener('click', handler);
+        };
+    }, []);
 
     const handleClick = () => {
         setIsOpen(!isOpen);
@@ -9,12 +30,12 @@ function Dropdown({options, selected, onSelect}){
 
     const handleOptionClick = (option) => {
         setIsOpen(false);
-        onSelect(option);
+        onChange(option);
     }
 
     const renderedOptions = options.map((option)=>{
         return(
-            <div key={option.value} onClick={() => handleOptionClick(option)}>
+            <div className="hover:bg-sky-100 rounded cursor-pointer p-1"key={option.value} onClick={() => handleOptionClick(option)}>
                 {option.label}
             </div>
         )
@@ -22,11 +43,12 @@ function Dropdown({options, selected, onSelect}){
 
 
     return (
-        <div>
-            <div onClick={handleClick}>
-                {selected?.label || 'Select...'}
-            </div>
-            {isOpen && <div >{renderedOptions}</div>}
+        <div ref={divEl} className='w-48 relative'>
+            <Panel className='flex justify-between items-center cursor-pointer' onClick={handleClick}>
+                {value?.label || 'Select...'}
+                <FaAngleDown className='text-xl'/>
+            </Panel>
+            {isOpen && <Panel className='absolute top-full'>{renderedOptions}</Panel>}
         </div>
     )
 }
