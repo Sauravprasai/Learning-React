@@ -11,7 +11,7 @@ function Button({
     rounded,
     ...rest
 }){
-    const classes = className(rest.className,'flex items-center px-4 py-1 my-1.5 mx-2 border', {
+    const classes = className(rest.className,'flex items-center px-4 py-1 my-1.5 border', {
         // Non-outline styles
         'border-blue-500 bg-blue-500 text-white': primary && !outline,
         'border-gray-900 bg-gray-900 text-white': secondary && !outline,
