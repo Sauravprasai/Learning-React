@@ -24,7 +24,8 @@ function Table({data, config, keyFy}){
         <tbody>
             {renderedRows}
         </tbody>
-    </table>)
+    </table>) 
 }
+
 
 export default Table;
