@@ -1,8 +1,6 @@
-import { render } from "react-dom";
-import Table from "../components/Table";
+import SortableTable from "../components/SortableTable";
 
 function TablePage() {
-
     const data =[
         {name: 'Orange', color: 'bg-orange-500', score: 5},
         {name: 'Apple', color: 'bg-red-500', score: 3},
@@ -14,7 +12,8 @@ function TablePage() {
     const config = [
         {
             label: 'Fruits',
-            render: (fruit) => fruit.name
+            render: (fruit) => fruit.name,
+            sortValue: (fruit) => fruit.name
         },
         {
             label: 'Color',
@@ -22,7 +21,8 @@ function TablePage() {
         },
         {
             label: 'Score',
-            render: (fruit) => fruit.score
+            render: (fruit) => fruit.score,
+            sortValue: (fruit) => fruit.score
         }
     ]
 
@@ -31,7 +31,7 @@ function TablePage() {
     }
 
     return <div>
-        <Table data={data} config={config} keyFy={keyFn}/>
+        <SortableTable data={data} config={config} keyFy={keyFn}/>
     </div>
 }
 
