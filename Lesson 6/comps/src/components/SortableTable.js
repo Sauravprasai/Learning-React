@@ -1,11 +1,19 @@
 import { useState } from 'react';
-import Table from './Table'
+import Table from './Table';
+import { FaSortAmountDownAlt, FaSortAmountUp, FaSort} from "react-icons/fa";
+
 function SortableTable(props){
     const {config, data} = props;
     const [sortOrder, setSortOrder] = useState(null);
     const [sortBy, setSortBy] = useState(null);
     
     const handleClick = (label) => {
+        if(sortBy && label !== sortBy){
+            setSortOrder('asc');
+            setSortBy(label);
+            return;
+        }
+
         if(sortOrder === null){
             setSortOrder('asc');
             setSortBy(label);
@@ -22,10 +30,17 @@ function SortableTable(props){
         if(!column.sortValue){
             return column;
         }
-        
+
         return {
             ...column, 
-            header: () => <th onClick={()=> handleClick(column.label)}>{column.label} Is Sortable</th>
+            header: () => (
+                <th className='cursor-pointer hover:bg-gray-100' onClick={()=> handleClick(column.label)}>
+                    <div className='flex item-center'>
+                        {getIcons(column.label, sortBy, sortOrder)}
+                        {column.label}
+                    </div>
+                </th>
+            )
         }
     })
 
@@ -46,9 +61,23 @@ function SortableTable(props){
         });
     }
 
-    return <div>
-                <Table {...props} config={updatedConfig} data={sortedData}/>
-            </div>
+    return (
+        <Table {...props} config={updatedConfig} data={sortedData}/>
+    )
+}
+
+function getIcons(label, sortBy, sortOrder){
+    if(label !== sortBy){
+        return <FaSort />;
+    }
+    
+    if(sortOrder === null){
+        return <FaSort />;
+    }else if(sortOrder === 'asc'){
+        return <FaSortAmountUp />;
+    }else if(sortOrder === 'desc'){
+        return <FaSortAmountDownAlt />
+    }
 }
 
 export default SortableTable;
