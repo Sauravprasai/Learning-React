@@ -1,6 +1,6 @@
-import { createSlide, nanoid } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const carsSlice = createSlide({
+const carsSlice = createSlice({
     name: 'cars',
     initialState: {
         searchTerm : "",
