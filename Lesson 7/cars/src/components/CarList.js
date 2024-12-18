@@ -4,6 +4,19 @@ import { removeCar } from "../Store/index"
 function CarList(){
     const dispatch = useDispatch();
 
+    const { cars, name } = useSelector(({ form, cars: { data, searchTerm } }) => {
+        if (!data) return { cars: [], name: form.name };
+    
+        const filteredCars = searchTerm
+            ? data.filter((car) => car.name.toLowerCase().includes(searchTerm.toLowerCase()))
+            : data;
+    
+        return {
+            cars: filteredCars,
+            name: form.name
+        };
+    });
+
     const handleCarDelete = (car) => {
         dispatch(removeCar(car.id));
     }
