@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import { submittingCard } from './cardSlice';
 
 const formSlice = createSlice({
     name: 'form',
@@ -17,6 +18,13 @@ const formSlice = createSlice({
         changeRollNo(state, action){
             state.rollNo = action.payload
         }
+    },
+    extraReducers(builder){
+        builder.addCase(submittingCard, (state, action)=>{
+            state.name = '';
+            state.grade = 0;
+            state.rollNo = 0;
+        })
     }
 })
 
