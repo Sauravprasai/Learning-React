@@ -13,6 +13,17 @@
       "name": "Dustin Lubowitz"
     }
   ],
-  "albums": [],
+  "albums": [
+    {
+      "id": 10,
+      "title": "Hiking Trip",
+      "userId": "1"
+    },
+    {
+      "id": 11,
+      "title": "Geography Trip",
+      "userId": "2"
+    }
+  ],
   "photos": []
 }
